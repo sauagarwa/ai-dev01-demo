@@ -6,11 +6,11 @@ spec:
   serviceAccountName: rec
   redisEnterpriseNodeResources:
     limits:
-      cpu: '4'
+      cpu: '1'
       ephemeral-storage: 10Gi
       memory: 4Gi
     requests:
-      cpu: '4'
+      cpu: '1'
       ephemeral-storage: 1Gi
       memory: 4Gi
   bootstrapperImageSpec:

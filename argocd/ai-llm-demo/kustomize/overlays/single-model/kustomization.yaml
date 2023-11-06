@@ -7,4 +7,8 @@ resources:
   - ../../base/operators.coreos.com/operatorgroups/redis
   - ../../base/operators.coreos.com/subscriptions/redis
   - ../../base/redisenterprise
+  - ../../base/redisenterprisedatabases
+  - ../../base/deployments
+  - ../../base/services
+  - routes
 #  - cert-manager
