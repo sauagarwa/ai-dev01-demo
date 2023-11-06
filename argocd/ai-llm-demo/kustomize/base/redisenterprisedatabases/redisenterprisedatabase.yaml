@@ -3,7 +3,6 @@ kind: RedisEnterpriseDatabase
 metadata:
   name: my-doc
 spec:
-  databaseSecretName: redb-my-doc
   memorySize: 3GB
   modulesList:
     - name: search
