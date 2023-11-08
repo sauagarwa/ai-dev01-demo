@@ -8,9 +8,9 @@ resources:
   - ../../base/operators.coreos.com/subscriptions/redis
   - ../../base/redisenterprise
   - ../../base/redisenterprisedatabases
-  - ../../base/deployments
-  - ../../base/services
   - ../../base/configmaps
-  - ../../base/persistentvolumeclaims
+  - deployments
+  - persistentvolumeclaims
+  - services
   - routes
 #  - cert-manager

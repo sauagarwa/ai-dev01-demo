@@ -4,3 +4,4 @@ resources:
   - ../../../base/routes
   - tgis-server.yaml
   - tgis-server-flan.yaml
+  - tgis-server-mistral.yaml

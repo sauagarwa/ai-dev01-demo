@@ -57,14 +57,18 @@ spec:
                 secretKeyRef:
                   name: redb-my-doc
                   key: password
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
             - name: APP_TITLE
               value: Talk with your documentation
             - name: INFERENCE_SERVER_URL
               value: >-
-                https://hf-text-generation-inference-server-$(NAMESPACE).apps.ai-dev01.kni.syseng.devcluster.openshift.com
+                https://tgis-server-$(NAMESPACE).apps.ai-dev01.kni.syseng.devcluster.openshift.com
             - name: REDIS_URL
               value: >-
-                redis://default:${DB_PASS}@my-doc-headless.$(NAMESPACE).svc.cluster.local:10225
+                redis://default:$(DB_PASS)@my-doc-headless.$(NAMESPACE).svc.cluster.local:10225
             - name: REDIS_INDEX
               value: docs
             - name: MAX_NEW_TOKENS

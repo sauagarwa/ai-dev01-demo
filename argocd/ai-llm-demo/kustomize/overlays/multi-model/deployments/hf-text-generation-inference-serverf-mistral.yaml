@@ -1,19 +1,19 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: hf-text-generation-inference-server
+  name: hf-text-generation-inference-server-mistral
   labels:
-    app: hf-text-generation-inference-server
+    app: hf-text-generation-inference-server-mistral
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hf-text-generation-inference-server
+      app: hf-text-generation-inference-server-mistral
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: hf-text-generation-inference-server
+        app: hf-text-generation-inference-server-mistral
     spec:
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -58,7 +58,7 @@ spec:
             failureThreshold: 3
           env:
             - name: MODEL_ID
-              value: google/flan-t5-xl
+              value: mistralai/Mistral-7B-Instruct-v0.1
             - name: MAX_INPUT_LENGTH
               value: '1024'
             - name: MAX_TOTAL_TOKENS
@@ -103,7 +103,7 @@ spec:
       volumes:
         - name: models-cache
           persistentVolumeClaim:
-            claimName: models-cache
+            claimName: models-cache-mistral
         - name: shm
           emptyDir:
             medium: Memory

@@ -1,13 +1,13 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: hf-text-generation-inference-server
+  name: tgis-server-flan
   labels:
     app: hf-text-generation-inference-server
 spec:
   to:
     kind: Service
-    name: hf-text-generation-inference-server
+    name: hf-text-generation-inference-server-flan
     weight: 100
   port:
     targetPort: http
