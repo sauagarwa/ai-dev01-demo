@@ -2,8 +2,6 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: tgis-server
-  labels:
-    app: hf-text-generation-inference-server
 spec:
   to:
     kind: Service
@@ -15,4 +13,6 @@ spec:
       weight: 50
   port:
     targetPort: http
+  tls:
+    termination: edge
   wildcardPolicy: None
