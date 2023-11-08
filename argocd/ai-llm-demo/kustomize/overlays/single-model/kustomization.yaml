@@ -10,5 +10,6 @@ resources:
   - ../../base/redisenterprisedatabases
   - ../../base/deployments
   - ../../base/services
+  - ../../base/configmaps
   - routes
 #  - cert-manager
