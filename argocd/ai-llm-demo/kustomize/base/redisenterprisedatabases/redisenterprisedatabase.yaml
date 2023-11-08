@@ -3,6 +3,7 @@ kind: RedisEnterpriseDatabase
 metadata:
   name: my-doc
 spec:
+  databasePort: 10225
   memorySize: 3GB
   modulesList:
     - name: search

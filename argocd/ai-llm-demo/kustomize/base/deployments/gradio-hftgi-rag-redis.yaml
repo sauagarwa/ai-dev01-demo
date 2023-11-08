@@ -64,7 +64,7 @@ spec:
                 https://hf-text-generation-inference-server-$(NAMESPACE).apps.ai-dev01.kni.syseng.devcluster.openshift.com
             - name: REDIS_URL
               value: >-
-                redis://default:${DB_PASS}@my-doc-headless.vectordb.svc.cluster.local:11993
+                redis://default:${DB_PASS}@my-doc-headless.$(NAMESPACE).svc.cluster.local:10225
             - name: REDIS_INDEX
               value: docs
             - name: MAX_NEW_TOKENS
