@@ -83,6 +83,8 @@ spec:
               value: '0.01'
             - name: REPETITION_PENALTY
               value: '1.03'
+            - name: TIMEOUT
+              value: '30'
           securityContext:
             capabilities:
               drop:

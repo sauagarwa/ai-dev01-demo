@@ -6,7 +6,7 @@ patchesStrategicMerge:
 resources:
   - ../../base/operators.coreos.com/operatorgroups/redis
   - ../../base/operators.coreos.com/subscriptions/redis
-  - ../../base/redisenterprise
+  - ../../base/redisenterprises
   - ../../base/redisenterprisedatabases
   - ../../base/configmaps
   - deployments

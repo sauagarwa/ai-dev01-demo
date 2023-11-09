@@ -2,6 +2,8 @@ apiVersion: app.redislabs.com/v1
 kind: RedisEnterpriseCluster
 metadata:
   name: rec
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   serviceAccountName: rec
   redisEnterpriseNodeResources:
