@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: gradio-hftgi-rag-redis
+  name: gradio-hftgi-rag-redis-flan
   labels:
-    app: gradio-hftgi-rag-redis
+    app: gradio-hftgi-rag-redis-flan
 spec:
   clusterIP: None
   ipFamilies:
@@ -20,4 +20,4 @@ spec:
   internalTrafficPolicy: Cluster
   type: ClusterIP
   selector:
-    app: gradio-hftgi-rag-redis
+    app: gradio-hftgi-rag-redis-flan

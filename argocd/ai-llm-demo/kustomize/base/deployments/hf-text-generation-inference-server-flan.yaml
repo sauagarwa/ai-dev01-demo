@@ -31,11 +31,11 @@ spec:
       containers:
         - resources:
             limits:
-              cpu: '8'
+              cpu: '3'
               memory: 24Gi
               nvidia.com/gpu: '1'
             requests:
-              cpu: '6'
+              cpu: '3'
           readinessProbe:
             httpGet:
               path: /health
@@ -99,7 +99,7 @@ spec:
             - name: shm
               mountPath: /dev/shm
           terminationMessagePolicy: File
-          image: 'quay.io/sughosh/text-generation-inference:latest'
+          image: 'ghcr.io/huggingface/text-generation-inference:1.1.0'
       volumes:
         - name: models-cache
           persistentVolumeClaim:

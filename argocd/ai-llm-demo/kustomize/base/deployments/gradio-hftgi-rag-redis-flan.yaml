@@ -1,19 +1,19 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: gradio-hftgi-rag-redis
+  name: gradio-hftgi-rag-redis-flan
   labels:
-    app: gradio-hftgi-rag-redis
+    app: gradio-hftgi-rag-redis-flan
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gradio-hftgi-rag-redis
+      app: gradio-hftgi-rag-redis-flan
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: gradio-hftgi-rag-redis
+        app: gradio-hftgi-rag-redis-flan
     spec:
       volumes:
         - name: redis-schema
@@ -26,10 +26,10 @@ spec:
       containers:
         - resources:
             limits:
-              cpu: '2'
+              cpu: '1'
               memory: 2Gi
             requests:
-              cpu: '1'
+              cpu: 500m
               memory: 1Gi
           readinessProbe:
             httpGet:
@@ -65,7 +65,7 @@ spec:
               value: Talk with your documentation
             - name: INFERENCE_SERVER_URL
               value: >-
-                https://tgis-server-$(NAMESPACE).apps.ai-dev01.kni.syseng.devcluster.openshift.com
+                http://hf-text-generation-inference-server-flan.$(NAMESPACE).svc.cluster.local:3000
             - name: REDIS_URL
               value: >-
                 redis://default:$(DB_PASS)@my-doc-headless.$(NAMESPACE).svc.cluster.local:10225
@@ -112,7 +112,7 @@ spec:
               mountPath: /opt/app-root/src/redis_schema.yaml
               subPath: redis_schema.yaml
           terminationMessagePolicy: File
-          image: 'twinkllsisodia/gradio-hftgi-rag-redis:latest'
+          image: 'twinkllsisodia/gradio-hftgi-rag-redis:0.1'
       restartPolicy: Always
       terminationGracePeriodSeconds: 120
       dnsPolicy: ClusterFirst
