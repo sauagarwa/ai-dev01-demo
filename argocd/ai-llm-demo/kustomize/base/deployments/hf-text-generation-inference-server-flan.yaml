@@ -22,10 +22,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: nvidia.com/gpu.product
+                  - key: nvidia.com/gpu.present
                     operator: In
                     values:
-                      - NVIDIA-A10G
+                      - "true"
       terminationGracePeriodSeconds: 120
       securityContext: {}
       containers:
@@ -41,7 +41,7 @@ spec:
               path: /health
               port: http
               scheme: HTTP
-            timeoutSeconds: 5
+            timeoutSeconds:   
             periodSeconds: 30
             successThreshold: 1
             failureThreshold: 3
