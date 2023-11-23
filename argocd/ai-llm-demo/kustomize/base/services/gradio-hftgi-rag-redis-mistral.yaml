@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: hf-text-generation-inference-server-flan
+  name: gradio-hftgi-rag-redis-mistral
   labels:
-    app: hf-text-generation-inference-server-flan
+    app: gradio-hftgi-rag-redis-mistral
 spec:
   clusterIP: None
   ipFamilies:
@@ -11,9 +11,13 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 3000
+      port: 7860
       targetPort: http
+    - name: metrics
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
   internalTrafficPolicy: Cluster
   type: ClusterIP
   selector:
-    app: hf-text-generation-inference-server-flan
+    app: gradio-hftgi-rag-redis-mistral

@@ -7,7 +7,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: gradio-hftgi-rag-redis-flan
+    name: gradio-hftgi-rag-redis-mistral
     weight: 100
   port:
     targetPort: http
