@@ -25,12 +25,27 @@ spec:
       "editable": true,
       "gnetId": null,
       "graphTooltip": 0,
-      "id": 1,
-      "iteration": 1703088648348,
+      "id": 2,
+      "iteration": 1703201965257,
       "links": [],
       "panels": [
         {
+          "collapsed": false,
           "datasource": null,
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 0
+          },
+          "id": 20,
+          "panels": [],
+          "title": "Row title",
+          "type": "row"
+        },
+        {
+          "datasource": null,
+          "description": "",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -57,11 +72,12 @@ spec:
           },
           "gridPos": {
             "h": 8,
-            "w": 11,
+            "w": 12,
             "x": 0,
-            "y": 0
+            "y": 1
           },
           "id": 2,
+          "maxPerRow": 2,
           "options": {
             "displayMode": "gradient",
             "orientation": "auto",
@@ -76,23 +92,33 @@ spec:
             "text": {}
           },
           "pluginVersion": "7.5.17",
+          "repeat": "ModelID",
+          "repeatDirection": "h",
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "google/flan-t5-xl",
+              "value": "google/flan-t5-xl"
+            }
+          },
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(feedback_stars_total{namespace=\"$namespace\", model_id=\"google/flan-t5-xl\"}) by (stars)",
+              "expr": "sum(feedback_stars_total{namespace=\"$namespace\", model_id=\"${ModelID:raw}\"}) by (stars)",
               "format": "time_series",
+              "instant": false,
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "RATINGS - GOOGLE FLAN-T5",
+          "title": "$ModelID - RATINGS",
           "transformations": [],
-          "transparent": true,
           "type": "bargauge"
         },
         {
           "datasource": null,
+          "description": "",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -119,11 +145,12 @@ spec:
           },
           "gridPos": {
             "h": 8,
-            "w": 11,
-            "x": 13,
-            "y": 0
+            "w": 12,
+            "x": 12,
+            "y": 1
           },
-          "id": 16,
+          "id": 21,
+          "maxPerRow": 2,
           "options": {
             "displayMode": "gradient",
             "orientation": "auto",
@@ -138,17 +165,29 @@ spec:
             "text": {}
           },
           "pluginVersion": "7.5.17",
+          "repeatDirection": "h",
+          "repeatIteration": 1703201965257,
+          "repeatPanelId": 2,
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "mistralai/Mistral-7B-Instruct-v0.1",
+              "value": "mistralai/Mistral-7B-Instruct-v0.1"
+            }
+          },
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(feedback_stars_total{namespace=\"$namespace\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"}) by (stars)\n",
+              "expr": "sum(feedback_stars_total{namespace=\"$namespace\", model_id=\"${ModelID:raw}\"}) by (stars)",
+              "format": "time_series",
+              "instant": false,
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "title": "RATINGS - MISTRAL MODEL",
-          "transparent": true,
+          "title": "$ModelID - RATINGS",
+          "transformations": [],
           "type": "bargauge"
         },
         {
@@ -185,9 +224,10 @@ spec:
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 8
+            "y": 9
           },
           "id": 10,
+          "maxPerRow": 2,
           "options": {
             "reduceOptions": {
               "calcs": [
@@ -203,18 +243,27 @@ spec:
           "pluginVersion": "7.5.17",
           "repeat": "ModelID",
           "repeatDirection": "h",
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "google/flan-t5-xl",
+              "value": "google/flan-t5-xl"
+            }
+          },
           "targets": [
             {
               "exemplar": true,
-              "expr": "(sum((feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"google/flan-t5-xl\"} or on() vector(0))* 1) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) * 2) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) * 3) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) * 4) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) * 5)) \n/\n(sum(feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"google/flan-t5-xl\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"google/flan-t5-xl\"} or on() vector(0)))\n",
+              "expr": "(sum((feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"${ModelID:raw}\"} or on() vector(0))* 1) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 2) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 3) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 4) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 5)) \n/\n(sum(feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"${ModelID:raw}\"} or on() vector(0)))",
+              "format": "time_series",
+              "instant": false,
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": "{{model_id}}",
               "refId": "A"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "AVERAGE RATINGS - google/flan-t5-xl",
+          "title": "$ModelID - AVERAGE RATING",
           "type": "gauge"
         },
         {
@@ -251,9 +300,10 @@ spec:
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 8
+            "y": 9
           },
-          "id": 8,
+          "id": 22,
+          "maxPerRow": 2,
           "options": {
             "reduceOptions": {
               "calcs": [
@@ -267,19 +317,30 @@ spec:
             "text": {}
           },
           "pluginVersion": "7.5.17",
+          "repeatDirection": "h",
+          "repeatIteration": 1703201965257,
+          "repeatPanelId": 10,
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "mistralai/Mistral-7B-Instruct-v0.1",
+              "value": "mistralai/Mistral-7B-Instruct-v0.1"
+            }
+          },
           "targets": [
             {
-              "exemplar": false,
-              "expr": "(sum((feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0))* 1) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) * 2) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) * 3) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) * 4) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) * 5)) \n/\n(sum(feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"mistralai/Mistral-7B-Instruct-v0.1\"} or on() vector(0)))",
+              "exemplar": true,
+              "expr": "(sum((feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"${ModelID:raw}\"} or on() vector(0))* 1) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 2) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 3) + sum((feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 4) +\nsum((feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"${ModelID:raw}\"} or on() vector(0)) * 5)) \n/\n(sum(feedback_stars_total{namespace=\"$namespace\", stars=\"1\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"2\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"3\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"4\", model_id=\"${ModelID:raw}\"} or on() vector(0)) + sum(feedback_stars_total{namespace=\"$namespace\", stars=\"5\", model_id=\"${ModelID:raw}\"} or on() vector(0)))",
+              "format": "time_series",
               "instant": false,
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": "{{model_id}}",
               "refId": "A"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "AVERAGE RATING  - MISTRAL MODEL",
+          "title": "$ModelID - AVERAGE RATING",
           "type": "gauge"
         },
         {
@@ -306,7 +367,7 @@ spec:
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 17
           },
           "id": 12,
           "options": {
@@ -325,26 +386,96 @@ spec:
             "textMode": "auto"
           },
           "pluginVersion": "7.5.17",
+          "repeat": "ModelID",
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "google/flan-t5-xl",
+              "value": "google/flan-t5-xl"
+            }
+          },
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum by (model_id) (model_usage_total{model_id=\"google/flan-t5-xl\", namespace=\"$namespace\"})",
+              "expr": "model_usage_total{model_id=\"${ModelID:raw}\",namespace=\"$namespace\"}",
+              "instant": false,
               "interval": "",
               "legendFormat": "{{model_id}}",
               "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "sum by (model_id) (model_usage_total{model_id=\"mistralai/Mistral-7B-Instruct-v0.1\", namespace=\"$namespace\"})",
-              "hide": false,
-              "interval": "",
-              "legendFormat": "{{model_id}}",
-              "refId": "B"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "MODEL USAGE",
+          "title": "$ModelID - MODEL USAGE",
+          "transformations": [],
+          "transparent": true,
+          "type": "stat"
+        },
+        {
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 17
+          },
+          "id": 23,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.17",
+          "repeatIteration": 1703201965257,
+          "repeatPanelId": 12,
+          "scopedVars": {
+            "ModelID": {
+              "selected": false,
+              "text": "mistralai/Mistral-7B-Instruct-v0.1",
+              "value": "mistralai/Mistral-7B-Instruct-v0.1"
+            }
+          },
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "model_usage_total{model_id=\"${ModelID:raw}\",namespace=\"$namespace\"}",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "{{model_id}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$ModelID - MODEL USAGE",
           "transformations": [],
           "transparent": true,
           "type": "stat"
@@ -396,10 +527,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 16
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 24
           },
           "id": 14,
           "options": {
@@ -438,7 +569,7 @@ spec:
           "type": "timeseries"
         }
       ],
-      "refresh": "5m",
+      "refresh": "5s",
       "schemaVersion": 27,
       "style": "dark",
       "tags": [],
@@ -447,7 +578,7 @@ spec:
           {
             "allValue": null,
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "tgis-llm-demo",
               "value": "tgis-llm-demo"
             },
@@ -460,23 +591,47 @@ spec:
             "label": null,
             "multi": false,
             "name": "namespace",
-            "options": [
-              {
-                "selected": true,
-                "text": "tgis-llm-demo",
-                "value": "tgis-llm-demo"
-              },
-              {
-                "selected": false,
-                "text": "vectordb",
-                "value": "vectordb"
-              }
-            ],
+            "options": [],
             "query": {
               "query": "label_values(namespace)",
               "refId": "StandardVariableQuery"
             },
-            "refresh": 0,
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "tagValuesQuery": "",
+            "tags": [],
+            "tagsQuery": "",
+            "type": "query",
+            "useTags": false
+          },
+          {
+            "allValue": null,
+            "current": {
+              "selected": false,
+              "text": [
+                "All"
+              ],
+              "value": [
+                "$__all"
+              ]
+            },
+            "datasource": null,
+            "definition": "label_values(model_id)",
+            "description": null,
+            "error": null,
+            "hide": 0,
+            "includeAll": true,
+            "label": null,
+            "multi": true,
+            "name": "ModelID",
+            "options": [],
+            "query": {
+              "query": "label_values(model_id)",
+              "refId": "StandardVariableQuery"
+            },
+            "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
             "sort": 0,
@@ -489,12 +644,12 @@ spec:
         ]
       },
       "time": {
-        "from": "now-6h",
+        "from": "now-5m",
         "to": "now"
       },
       "timepicker": {},
       "timezone": "",
       "title": "MODEL FEEDBACK/RATING",
       "uid": "HtUdEp4Ik",
-      "version": 44
+      "version": 34
     }
