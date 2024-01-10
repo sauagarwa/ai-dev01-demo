@@ -12,4 +12,4 @@ spec:
       - tgis-llm-demo
   selector:
     matchExpressions:
-      - {key: app, operator: In, values: [gradio-hftgi-rag-redis-mistral,gradio-hftgi-rag-redis-flan]}
+      - {key: app, operator: In, values: [gradio-hftgi-rag-redis-model1,gradio-hftgi-rag-redis-model2]}
