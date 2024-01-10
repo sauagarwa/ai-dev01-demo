@@ -11,6 +11,8 @@ patchesJSON6902:
       - op: replace
         path: /spec/targetNamespaces/0
         value: tgis-llm-demo
+generatorOptions:
+ disableNameSuffixHash: true
 secretGenerator:
   - name: huggingface-hub-token
     literals:
