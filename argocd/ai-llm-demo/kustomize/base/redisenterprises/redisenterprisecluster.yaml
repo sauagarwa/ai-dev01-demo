@@ -28,6 +28,9 @@ spec:
   createServiceAccount: true
   username: demo-sg@redhat.com
   clusterCredentialSecretRole: ''
+  redisEnterpriseImageSpec:
+    imagePullPolicy: IfNotPresent
+    repository: registry.connect.redhat.com/redislabs/redis-enterprise
   podStartingPolicy:
     enabled: false
     startingThresholdSeconds: 540
@@ -35,11 +38,6 @@ spec:
     imagePullPolicy: ''
     repository: registry.connect.redhat.com/redislabs/services-manager
     versionTag: ''
-  redisEnterpriseImageSpec:
-    digestHash: 'sha256:5136fad94063d8bb6a65ac3c0fa3e41ca33f6cf16fcefbb9e0e74b24317a5b29'
-    imagePullPolicy: IfNotPresent
-    repository: registry.connect.redhat.com/redislabs/redis-enterprise
-    versionTag: 7.2.4-64.rhel8-openshift
   uiServiceType: ClusterIP
   clusterCredentialSecretType: kubernetes
   servicesRiggerSpec:
