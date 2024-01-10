@@ -1,19 +1,18 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: gradio-hftgi-rag-redis-mistral
+  name: gradio-hftgi-rag-redis-model1
   labels:
-    app: gradio-hftgi-rag-redis-mistral
+    app: gradio-hftgi-rag-redis-model1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gradio-hftgi-rag-redis-mistral
+      app: gradio-hftgi-rag-redis-model1
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: gradio-hftgi-rag-redis-mistral
+        app: gradio-hftgi-rag-redis-model1
     spec:
       volumes:
         - name: redis-schema
@@ -23,6 +22,9 @@ spec:
               - key: redis_schema.yaml
                 path: redis_schema.yaml
             defaultMode: 420
+        - name: cache-volume
+          emptyDir:
+            sizeLimit: 2Gi
       containers:
         - resources:
             limits:
@@ -65,16 +67,15 @@ spec:
               value: Talk with your documentation
             - name: INFERENCE_SERVER_URL
               value: >-
-                http://hf-text-generation-inference-server-mistral.$(NAMESPACE).svc.cluster.local:3000
+                http://hf-text-generation-inference-server-model1.$(NAMESPACE).svc.cluster.local:3000
             - name: REDIS_URL
               value: >-
                 redis://default:$(DB_PASS)@my-doc-headless.$(NAMESPACE).svc.cluster.local:10225
             - name: REDIS_INDEX
               value: docs
             - name: MAX_NEW_TOKENS
-              value: '512'
-            - name: TOP_K
-              value: '10'
+              value: '1024'
+            - name: TOP_Kmistral
             - name: TOP_P
               value: '0.95'
             - name: TYPICAL_P
@@ -111,8 +112,10 @@ spec:
             - name: redis-schema
               mountPath: /opt/app-root/src/redis_schema.yaml
               subPath: redis_schema.yaml
+            - name: cache-volume
+              mountPath: /opt/app-root/src/assets/proposal-docs
           terminationMessagePolicy: File
-          image: 'twinkllsisodia/gradio-hftgi-rag-redis:0.1'
+          image: 'quay.io/ecosystem-appeng/openshift-ai-demo:latest'
       restartPolicy: Always
       terminationGracePeriodSeconds: 120
       dnsPolicy: ClusterFirst

@@ -11,6 +11,10 @@ patchesJSON6902:
       - op: replace
         path: /spec/targetNamespaces/0
         value: tgis-llm-demo
+secretGenerator:
+  - name: huggingface-hub-token
+    literals:
+      - token=PLACEHOLDER
 resources:
   - ../../base/operators.coreos.com/operatorgroups/redis
   - ../../base/operators.coreos.com/subscriptions/redis
